@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: zooclient-deployment
+  labels:
+    app: zooclient
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: zooclient
+  template:
+    metadata:
+      labels:
+        app: zooclient
+    spec:
+      containers:
+        - name: zooclient
+          image: docker.io/library/zooclient:1.0
+          ports:
+            - containerPort: 8085
+              name: inbound
+              protocol: TCP
